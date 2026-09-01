@@ -1,0 +1,77 @@
+<!-- SmartNews Widget: Dynamic Hero Slider Carousel Script -->
+<!-- Place this widget in Blogger Layout if you wish to fetch a specific label (e.g. 'Headline' or 'Utama') -->
+
+<div class="swiper hero-swiper" id="heroSwiperCustom">
+    <div class="swiper-wrapper" id="heroSwiperCustomWrapper">
+        <div class="swiper-slide">
+            <article class="slide-card">
+                <img class="slide-card__img" src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80" alt="Headline SmartNews">
+                <div class="slide-card__overlay">
+                    <span class="slide-card__cat">Sorotan Utama</span>
+                    <h2 class="slide-card__title"><a href="/">SmartNews Portal Berita Modern Generasi Baru</a></h2>
+                    <span class="slide-card__time"><i class="fas fa-clock"></i> Berita Pilihan</span>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
+
+<script>
+(function() {
+    var label = 'Headline'; // Change to your desired label or leave empty for recent posts
+    var feedUrl = label ? '/feeds/posts/default/-/' + encodeURIComponent(label) + '?alt=json&max-results=5' : '/feeds/posts/default?alt=json&max-results=5';
+
+    fetch(feedUrl)
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            if (data.feed && data.feed.entry && data.feed.entry.length > 0) {
+                var wrapper = document.getElementById('heroSwiperCustomWrapper');
+                if (wrapper) {
+                    var html = '';
+                    data.feed.entry.forEach(function(entry) {
+                        var title = entry.title.$t;
+                        var link = '';
+                        entry.link.forEach(function(l) {
+                            if (l.rel === 'alternate') link = l.href;
+                        });
+                        var cat = (entry.category && entry.category.length > 0) ? entry.category[0].term : 'Utama';
+                        var img = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=800&q=80';
+                        if (entry.media$thumbnail) {
+                            img = entry.media$thumbnail.url.replace('/s72-c/', '/w800-h500-p-k-no-nu/');
+                        }
+                        html += '<div class="swiper-slide">' +
+                                    '<article class="slide-card">' +
+                                        '<img class="slide-card__img" src="' + img + '" alt="' + title + '" loading="lazy">' +
+                                        '<div class="slide-card__overlay">' +
+                                            '<span class="slide-card__cat">' + cat + '</span>' +
+                                            '<h2 class="slide-card__title"><a href="' + link + '">' + title + '</a></h2>' +
+                                            '<span class="slide-card__time"><i class="fas fa-clock"></i> Pilihan Redaksi</span>' +
+                                        '</div>' +
+                                    '</article>' +
+                                '</div>';
+                    });
+                    wrapper.innerHTML = html;
+                    if (typeof Swiper !== 'undefined') {
+                        new Swiper('#heroSwiperCustom', {
+                            slidesPerView: 1,
+                            spaceBetween: 16,
+                            loop: true,
+                            autoplay: { delay: 5000 },
+                            navigation: {
+                                nextEl: '.swiper-button-next',
+                                prevEl: '.swiper-button-prev'
+                            },
+                            breakpoints: {
+                                640: { slidesPerView: 1.2 },
+                                1024: { slidesPerView: 2.2 }
+                            }
+                        });
+                    }
+                }
+            }
+        })
+        .catch(function(err) {});
+})();
+</script>

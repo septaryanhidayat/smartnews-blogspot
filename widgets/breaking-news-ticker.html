@@ -1,0 +1,39 @@
+<!-- SmartNews Widget: Breaking News Ticker -->
+<div class="breaking-news-bar">
+    <div class="breaking-news__inner container">
+        <div class="breaking-news__badge">
+            <span class="breaking-news__pulse"></span>
+            <i class="fas fa-bolt"></i>
+            <span>BREAKING</span>
+        </div>
+        <div class="breaking-news__ticker-wrap">
+            <div class="breaking-news__ticker-track" id="breakingTickerTrack">
+                <!-- Posts will be automatically fetched here via JSON feed -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+fetch('/feeds/posts/default?alt=json&max-results=6')
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+        if (data.feed && data.feed.entry && data.feed.entry.length > 0) {
+            var track = document.getElementById('breakingTickerTrack');
+            if (track) {
+                var html = '';
+                data.feed.entry.forEach(function(entry) {
+                    var title = entry.title.$t;
+                    var link = '';
+                    entry.link.forEach(function(l) {
+                        if (l.rel === 'alternate') link = l.href;
+                    });
+                    var cat = (entry.category && entry.category.length > 0) ? entry.category[0].term : 'Berita';
+                    html += '<a href="' + link + '" class="breaking-news__item"><span class="breaking-news__category">' + cat + '</span> ' + title + ' <span class="breaking-news__divider">&bull;</span></a>';
+                });
+                track.innerHTML = html + html;
+            }
+        }
+    })
+    .catch(function(err) {});
+</script>

@@ -1,0 +1,42 @@
+<!-- SmartNews Widget: Berita Populer Ranked 1-5 -->
+<section class="sidebar-widget">
+    <h3 class="widget-title"><i class="fas fa-fire"></i> BERITA TERPOPULER</h3>
+    <div class="widget-popular__list" id="customPopularFeed">
+        <!-- Posts will be generated dynamically or manually listed -->
+    </div>
+</section>
+
+<script>
+(function() {
+    fetch('/feeds/posts/default?alt=json&max-results=5')
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+            if (data.feed && data.feed.entry && data.feed.entry.length > 0) {
+                var container = document.getElementById('customPopularFeed');
+                if (container) {
+                    var html = '';
+                    data.feed.entry.forEach(function(entry, index) {
+                        var title = entry.title.$t;
+                        var link = '';
+                        entry.link.forEach(function(l) {
+                            if (l.rel === 'alternate') link = l.href;
+                        });
+                        var cat = (entry.category && entry.category.length > 0) ? entry.category[0].term : 'Berita';
+                        var isTop = index < 3 ? 'popular-item__rank--top' : '';
+
+                        html += '<div class="popular-item">' +
+                                    '<span class="popular-item__rank ' + isTop + '">' + (index + 1) + '</span>' +
+                                    '<div class="popular-item__body">' +
+                                        '<span class="popular-item__cat">' + cat + '</span>' +
+                                        '<h4 class="popular-item__title"><a href="' + link + '">' + title + '</a></h4>' +
+                                        '<span class="popular-item__date"><i class="fas fa-clock"></i> Berita Populer</span>' +
+                                    '</div>' +
+                                '</div>';
+                    });
+                    container.innerHTML = html;
+                }
+            }
+        })
+        .catch(function(err) {});
+})();
+</script>

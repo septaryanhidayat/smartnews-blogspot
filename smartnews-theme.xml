@@ -1,0 +1,3319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+    <meta charset='utf-8'/>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=5.0' name='viewport'/>
+    
+    <!-- Title and Core SEO -->
+    <b:if cond='data:view.isHomepage'>
+        <title><data:blog.title/> - Portal Berita Terpercaya &amp; Cerdas</title>
+    <b:elseif cond='data:view.isSingleItem'/>
+        <title><data:blog.pageName/> - <data:blog.title/></title>
+    <b:elseif cond='data:view.isArchive'/>
+        <title>Arsip: <data:blog.pageName/> - <data:blog.title/></title>
+    <b:elseif cond='data:view.isLabelSearch'/>
+        <title>Kategori: <data:blog.pageName/> - <data:blog.title/></title>
+    <b:elseif cond='data:view.isSearch'/>
+        <title>Hasil Pencarian: &quot;<data:blog.searchQuery/>&quot; - <data:blog.title/></title>
+    <b:else/>
+        <title><data:blog.pageTitle/></title>
+    </b:if>
+
+    <b:include data='blog' name='all-head-content'/>
+
+    <!-- Dynamic Meta Description & Keywords -->
+    <b:if cond='data:view.description'>
+        <meta expr:content='data:view.description' name='description'/>
+    <b:else/>
+        <meta content='SmartNews - Portal berita terpercaya menyajikan informasi terkini, akurat, tajam, dan berimbang seputar nasional, politik, ekonomi, teknologi, dan gaya hidup.' name='description'/>
+    </b:if>
+    <meta content='smartnews, berita terkini, berita indonesia, portal berita, nasional, politik, ekonomi, teknologi, olahraga' name='keywords'/>
+    <meta content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' name='robots'/>
+    <meta content='SmartNews Editorial' name='author'/>
+    <link expr:href='data:view.url.canonical' rel='canonical'/>
+
+    <!-- Open Graph (Facebook, WhatsApp, Telegram) -->
+    <meta expr:content='data:blog.title' property='og:site_name'/>
+    <meta content='id_ID' property='og:locale'/>
+    <b:if cond='data:view.isSingleItem'>
+        <meta content='article' property='og:type'/>
+        <meta expr:content='data:view.title' property='og:title'/>
+        <meta expr:content='data:view.description' property='og:description'/>
+        <meta expr:content='data:view.url.canonical' property='og:url'/>
+        <b:if cond='data:view.featuredImage'>
+            <meta expr:content='data:view.featuredImage' property='og:image'/>
+            <meta expr:content='data:view.featuredImage' property='og:image:secure_url'/>
+        </b:if>
+    <b:else/>
+        <meta content='website' property='og:type'/>
+        <meta expr:content='data:blog.title' property='og:title'/>
+        <meta content='Portal Berita Terpercaya dan Cerdas Menghadirkan Informasi Terlengkap.' property='og:description'/>
+        <meta expr:content='data:blog.homepageUrl.canonical' property='og:url'/>
+    </b:if>
+
+    <!-- Twitter Card -->
+    <meta content='summary_large_image' name='twitter:card'/>
+    <meta expr:content='data:view.title' name='twitter:title'/>
+    <b:if cond='data:view.featuredImage'>
+        <meta expr:content='data:view.featuredImage' name='twitter:image'/>
+    </b:if>
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <b:if cond='data:view.isSingleItem'>
+        <script type='application/ld+json'>
+        {
+          &quot;@context&quot;: &quot;https://schema.org&quot;,
+          &quot;@type&quot;: &quot;NewsArticle&quot;,
+          &quot;mainEntityOfPage&quot;: {
+            &quot;@type&quot;: &quot;WebPage&quot;,
+            &quot;@id&quot;: &quot;<data:view.url.canonical/>&quot;
+          },
+          &quot;headline&quot;: &quot;<data:view.title.escaped/>&quot;,
+          &quot;description&quot;: &quot;<data:view.description.escaped/>&quot;,
+          &quot;image&quot;: [&quot;<data:view.featuredImage/>&quot;],
+          &quot;author&quot;: {
+            &quot;@type&quot;: &quot;Person&quot;,
+            &quot;name&quot;: &quot;Redaksi SmartNews&quot;
+          },
+          &quot;publisher&quot;: {
+            &quot;@type&quot;: &quot;Organization&quot;,
+            &quot;name&quot;: &quot;<data:blog.title/>&quot;
+          }
+        }
+        </script>
+    <b:else/>
+        <script type='application/ld+json'>
+        {
+          &quot;@context&quot;: &quot;https://schema.org&quot;,
+          &quot;@type&quot;: &quot;WebSite&quot;,
+          &quot;name&quot;: &quot;<data:blog.title/>&quot;,
+          &quot;url&quot;: &quot;<data:blog.homepageUrl.canonical/>&quot;,
+          &quot;potentialAction&quot;: {
+            &quot;@type&quot;: &quot;SearchAction&quot;,
+            &quot;target&quot;: &quot;<data:blog.homepageUrl.canonical/>search?q={search_term_string}&quot;,
+            &quot;query-input&quot;: &quot;required name=search_term_string&quot;
+          }
+        }
+        </script>
+    </b:if>
+
+    <!-- External CDNs: Google Fonts, Font Awesome, Swiper -->
+    <link href='https://fonts.googleapis.com' rel='preconnect'/>
+    <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+    <link href='https://cdnjs.cloudflare.com' rel='preconnect'/>
+    <link href='https://cdn.jsdelivr.net' rel='preconnect'/>
+
+    <link href='https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&amp;family=Noto+Serif:wght@700&amp;display=swap' rel='stylesheet'/>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet'/>
+    <link href='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css' rel='stylesheet'/>
+
+    <!-- Master CSS -->
+    <b:skin><![CDATA[
+/* --------------------------------------------------------------------------
+   SmartNews Portal - Master Stylesheet (5 Hero Columns + Pixel Perfect Mobile)
+   -------------------------------------------------------------------------- */
+:root {
+  --font-body: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: 'Noto Serif', Georgia, Cambria, 'Times New Roman', Times, serif;
+  
+  --color-primary: #1a56db;
+  --color-primary-dark: #1442a6;
+  --color-primary-light: #ebf5ff;
+  --color-accent: #cf2e2e;
+  --color-accent-hover: #b91c1c;
+  
+  --bg-body: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-header: #ffffff;
+  --bg-top-nav: #ffffff;
+  --bg-muted: #f1f5f9;
+  --bg-hover: #f1f5f9;
+  
+  --text-main: #0f172a;
+  --text-muted: #334155;
+  --text-light: #475569;
+  --text-inverse: #ffffff;
+  
+  --border-color: #e2e8f0;
+  --border-light: #f1f5f9;
+  
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+  
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Mode Variables */
+html.dark-mode {
+  --color-primary: #60a5fa;
+  --color-primary-dark: #3b82f6;
+  --color-primary-light: #1e3a8a;
+  --color-accent: #f87171;
+  --color-accent-hover: #ef4444;
+
+  --bg-body: #0b0f19;
+  --bg-card: #151d2e;
+  --bg-header: #0f172a;
+  --bg-top-nav: #0f172a;
+  --bg-muted: #1e293b;
+  --bg-hover: #1e293b;
+  
+  --text-main: #f8fafc;
+  --text-muted: #e2e8f0;
+  --text-light: #cbd5e1;
+  
+  --border-color: #1e293b;
+  --border-light: #1e293b;
+  
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+}
+
+/* Hide Blogger Default System Elements */
+#Attribution1, #ReportAbuse1, .attribution, .report-abuse, .blogger-attribution, 
+.blog-feeds, #Navbar1, .widget.Attribution, .widget.ReportAbuse, .widget.BlogSearch, 
+.feed-links, .status-msg-wrap, .quickedit, .goog-te-banner-frame, .skiptranslate iframe {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.35s ease, color 0.35s ease;
+  padding-top: 54px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -120px;
+  left: 16px;
+  background-color: var(--color-accent);
+  color: #ffffff !important;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 13.5px;
+  z-index: 999999;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  transition: top 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.skip-link:focus {
+  top: 16px;
+  outline: 3px solid #ffffff;
+}
+
+/* Reading Scroll Progress Bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3.5px;
+  background: linear-gradient(90deg, #cf2e2e, #ef4444, #f59e0b);
+  z-index: 99999;
+  transition: width 0.1s linear;
+}
+
+/* Top Sticky Navigation */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 54px;
+  background: var(--bg-top-nav);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.35s ease, border-color 0.35s ease;
+}
+.top-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  gap: 10px;
+}
+.top-nav__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: var(--bg-muted);
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+}
+.menu-toggle:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+.menu-toggle__circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.top-nav__brand-mobile {
+  display: none;
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--color-accent);
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+.top-nav__brand-mobile span {
+  color: var(--color-primary);
+}
+
+/* Search Form */
+.top-nav__center {
+  flex: 1;
+  max-width: 440px;
+}
+.search-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--bg-muted);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  padding: 2px 14px;
+  transition: var(--transition);
+}
+.search-form:focus-within {
+  border-color: var(--color-primary);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.15);
+}
+.search-form__btn {
+  color: var(--text-light);
+  cursor: pointer;
+  padding: 6px 8px 6px 0;
+}
+.search-form__input {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 13.5px;
+  color: var(--text-main);
+}
+.search-form__input::placeholder {
+  color: var(--text-light);
+}
+
+/* Top Nav Right Action Buttons */
+.top-nav__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Dual Language Switcher (Functional) */
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-muted);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  padding: 3px 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+.lang-btn {
+  color: var(--text-light);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+.lang-btn.active {
+  background: var(--color-accent);
+  color: #ffffff !important;
+  box-shadow: 0 1px 4px rgba(207, 46, 46, 0.3);
+}
+.lang-divider {
+  margin: 0 3px;
+  color: var(--border-color);
+}
+
+.btn-dark-mode {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-muted);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-dark-mode:hover {
+  background: var(--border-color);
+  transform: rotate(15deg);
+}
+
+.btn-order-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 3px 10px rgba(220, 38, 38, 0.35);
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.btn-order-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.45);
+}
+
+.btn-mobile-search, .menu-toggle-mobile {
+  display: none;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-muted);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+/* Mobile Search Bar Dropdown */
+.mobile-search-bar {
+  display: none;
+  position: absolute;
+  top: 54px;
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  animation: fadeUpIn 0.25s ease forwards;
+}
+.mobile-search-bar.active {
+  display: block;
+}
+.mobile-search-close {
+  cursor: pointer;
+  padding: 6px 8px;
+  color: var(--text-light);
+}
+
+/* Offcanvas Sidebar Drawer */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+.sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+.sidebar-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 310px;
+  max-width: 85vw;
+  background: var(--bg-card);
+  z-index: 10001;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-xl);
+}
+.sidebar-drawer.active {
+  transform: translateX(0);
+}
+.sidebar-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+.sidebar-brand-title {
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--color-accent);
+}
+.sidebar-brand-title span {
+  color: var(--color-primary);
+}
+.sidebar-drawer__close {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--bg-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: var(--transition);
+}
+.sidebar-drawer__close:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+.sidebar-drawer__nav {
+  padding: 12px 0;
+  flex: 1;
+}
+.sidebar-drawer__nav li a {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--text-main);
+  border-left: 3px solid transparent;
+  transition: var(--transition);
+}
+.sidebar-drawer__nav li a:hover,
+.sidebar-drawer__nav li.active a {
+  background: var(--bg-muted);
+  color: var(--color-accent);
+  border-left-color: var(--color-accent);
+  padding-left: 28px;
+}
+.sidebar-drawer__socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+}
+.sidebar-drawer__social {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--bg-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-main);
+  font-size: 14px;
+  transition: var(--transition);
+}
+.sidebar-drawer__social:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+.sidebar-drawer__copyright {
+  text-align: center;
+  padding: 12px 16px 20px;
+  font-size: 11.5px;
+  color: var(--text-light);
+  border-top: 1px solid var(--border-color);
+}
+
+/* Site Branding Header */
+.site-branding {
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border-color);
+  padding: 24px 0;
+  transition: background-color 0.35s ease;
+}
+.site-branding__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.brand-logo-text {
+  font-size: 34px;
+  font-weight: 900;
+  color: var(--color-accent);
+  letter-spacing: -1px;
+  line-height: 1;
+}
+.brand-logo-text span {
+  color: var(--color-primary);
+}
+.brand-tagline {
+  font-size: 12.5px;
+  color: var(--text-light);
+  margin-top: 5px;
+  font-weight: 500;
+}
+.header-banner-ad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-muted);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Primary Horizontal Navigation Menu / Category Bar */
+.main-nav {
+  background: linear-gradient(90deg, #1e3a8a 0%, #1d4ed8 50%, #2563eb 100%);
+  color: #ffffff;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+  z-index: 100;
+}
+html.dark-mode .main-nav {
+  background: linear-gradient(90deg, #0f172a 0%, #1e293b 100%);
+  border-bottom: 1px solid #334155;
+}
+.main-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.main-nav__scroll-wrap {
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+.main-nav__scroll-wrap::-webkit-scrollbar {
+  display: none;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.menu li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 14px;
+  font-weight: 700;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.92);
+  position: relative;
+  border-radius: 6px;
+  transition: var(--transition);
+}
+.menu li a:hover,
+.menu li.current-menu-item a {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.16);
+}
+.menu li.current-menu-item a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  height: 3px;
+  background: #ef4444;
+  border-radius: 3px 3px 0 0;
+}
+.main-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 12px;
+}
+.main-nav__all-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 12.5px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.main-nav__all-toggle:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* Breaking News Marquee Ticker */
+.breaking-news-bar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  padding: 8px 0;
+  overflow: hidden;
+  font-size: 13.5px;
+}
+.breaking-news__inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.breaking-news__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 11px;
+  padding: 4px 11px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(207, 46, 46, 0.4);
+}
+.breaking-news__pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffffff;
+  animation: pulseDot 1.6s infinite ease-in-out;
+}
+@keyframes pulseDot {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  50% { transform: scale(1.35); opacity: 1; box-shadow: 0 0 10px #ffffff; }
+  100% { transform: scale(0.9); opacity: 0.8; }
+}
+.breaking-news__ticker-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+.breaking-news__ticker-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: marquee 28s linear infinite;
+}
+.breaking-news__ticker-track:hover {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+.breaking-news__item {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 24px;
+  color: var(--text-main);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.breaking-news__item:hover {
+  color: var(--color-accent);
+}
+.breaking-news__category {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  margin-right: 8px;
+}
+.breaking-news__divider {
+  margin-left: 16px;
+  color: var(--border-color);
+}
+
+/* Trending Tags Bar */
+.trending-tags {
+  background: var(--bg-muted);
+  border-bottom: 1px solid var(--border-color);
+  padding: 7px 0;
+  font-size: 12.5px;
+}
+.trending-tags__inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.trending-tags__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 800;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  text-transform: uppercase;
+  font-size: 11.5px;
+}
+.trending-tags__scroll {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+.trending-tags__scroll::-webkit-scrollbar {
+  display: none;
+}
+.trending-tags__item {
+  color: var(--text-muted);
+  font-weight: 600;
+  background: var(--bg-card);
+  padding: 3px 11px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+.trending-tags__item:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+/* 5-COLUMN HERO SLIDER CAROUSEL SECTION */
+.hero-slider-section {
+  padding: 20px 0 10px;
+}
+.hero-slider-section__overflow {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.hero-swiper {
+  width: 100%;
+  height: 235px;
+  border-radius: var(--radius-lg);
+}
+.slide-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #0f172a;
+}
+.slide-card__img-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.slide-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.slide-card:hover .slide-card__img {
+  transform: scale(1.08);
+}
+.slide-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0) 30%, rgba(15, 23, 42, 0.95) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 14px 12px 10px;
+  color: #ffffff;
+}
+.slide-card__cat {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+.slide-card__title {
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 4px;
+  color: #ffffff;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.slide-card__title a {
+  color: #ffffff !important;
+}
+.slide-card__title a:hover {
+  color: #fca5a5 !important;
+}
+.slide-card__time {
+  font-size: 10.5px;
+  color: #cbd5e1;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.media-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 3;
+}
+.media-badge--video {
+  background: rgba(220, 38, 38, 0.9);
+}
+.media-badge--photo {
+  background: rgba(26, 86, 219, 0.9);
+}
+.swiper-button-prev, .swiper-button-next {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: var(--radius-full);
+  background: rgba(15, 23, 42, 0.75) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(4px);
+  transition: var(--transition);
+}
+.swiper-button-prev:after, .swiper-button-next:after {
+  font-size: 14px !important;
+  font-weight: 900;
+}
+.swiper-button-prev:hover, .swiper-button-next:hover {
+  background: var(--color-accent) !important;
+  transform: scale(1.08);
+}
+
+/* Main Layout Grid (2 Columns: 8 Main + 4 Sidebar) */
+.main-layout {
+  position: relative;
+  padding: 24px 0 48px;
+}
+.main-layout__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 32px;
+  align-items: start;
+  position: relative;
+}
+.main-content {
+  min-width: 0;
+}
+
+/* PERFECT STICKY RIGHT SIDEBAR */
+.sidebar {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 74px !important;
+  align-self: flex-start !important;
+  z-index: 20;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Section Headings */
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border-color);
+  position: relative;
+}
+.section-head::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--color-accent);
+}
+.section-head__title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-main);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.section-head__title i {
+  color: var(--color-accent);
+}
+.section-head__more {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: var(--transition);
+}
+.section-head__more:hover {
+  color: var(--color-accent);
+  padding-left: 4px;
+}
+
+/* Animations & Fade-Up on Scroll */
+@keyframes fadeUpIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up-in {
+  animation: fadeUpIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Featured / Headline Article Card */
+.featured-article {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 28px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.featured-article:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-4px);
+}
+.featured-article__img-wrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--bg-muted);
+}
+.featured-article__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.featured-article:hover .featured-article__img {
+  transform: scale(1.06);
+}
+.featured-article__body {
+  padding: 22px;
+}
+.featured-article__cat {
+  display: inline-block;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.featured-article__title {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.35;
+  margin-bottom: 10px;
+  color: var(--text-main);
+}
+.featured-article__title a:hover {
+  color: var(--color-accent);
+}
+.featured-article__excerpt {
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.featured-article__meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-light);
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Category Grid (2 Columns on Desktop & 2 Columns on Mobile) */
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-bottom: 28px;
+}
+.article-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.article-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+.article-card__img-wrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg-muted);
+}
+.article-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.article-card:hover .article-card__img {
+  transform: scale(1.06);
+}
+.article-card__cat {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+.article-card__body {
+  padding: 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.article-card__title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.article-card__title a:hover {
+  color: var(--color-accent);
+}
+.article-card__date {
+  font-size: 11.5px;
+  color: var(--text-light);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Article Feed List (Horizontal Feed Items) */
+.article-feed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+.feed-item {
+  display: flex;
+  gap: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+}
+.feed-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateX(5px);
+  border-color: var(--color-primary-light);
+}
+.feed-item__img-wrap {
+  position: relative;
+  width: 200px;
+  height: 130px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--bg-muted);
+}
+.feed-item__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.feed-item:hover .feed-item__img {
+  transform: scale(1.06);
+}
+.feed-item__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.feed-item__cat {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 6px;
+}
+.feed-item__title {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.feed-item__title a:hover {
+  color: var(--color-accent);
+}
+.feed-item__excerpt {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.5;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.feed-item__meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11.5px;
+  color: var(--text-light);
+}
+
+/* Load More Button */
+.load-more-wrap {
+  text-align: center;
+  margin: 28px 0 16px;
+}
+.btn-load-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 26px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-load-more:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+  box-shadow: 0 6px 16px rgba(207, 46, 46, 0.35);
+  transform: translateY(-2px);
+}
+
+/* Sidebar Widgets (Solid Blue Header Banner) */
+.sidebar-widget {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.widget-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+  background: #1a56db;
+  padding: 12px 16px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.widget-title i {
+  color: #ffffff;
+}
+.widget-inner {
+  padding: 16px;
+}
+
+/* Ranked Popular News (1 - 5) */
+.widget-popular__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.popular-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border-color);
+  transition: transform 0.2s ease;
+}
+.popular-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.popular-item:hover {
+  transform: translateX(4px);
+}
+.popular-item__rank {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: #1e3a8a;
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.popular-item__rank--top {
+  background: var(--color-accent);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(207, 46, 46, 0.4);
+}
+.popular-item__body {
+  flex: 1;
+}
+.popular-item__cat {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--color-accent);
+  display: block;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+.popular-item__title {
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 4px;
+}
+.popular-item__title a:hover {
+  color: var(--color-accent);
+}
+.popular-item__date {
+  font-size: 11px;
+  color: var(--text-light);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Sidebar Recent News */
+.widget-recent__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cat-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+.cat-item:hover {
+  transform: translateX(4px);
+}
+.cat-item__img-wrap {
+  width: 80px;
+  height: 56px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--bg-muted);
+}
+.cat-item__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.cat-item:hover .cat-item__img {
+  transform: scale(1.08);
+}
+.cat-item__body {
+  flex: 1;
+  min-width: 0;
+}
+.cat-item__cat {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+.cat-item__title {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 2px 0 3px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cat-item__title a:hover {
+  color: var(--color-accent);
+}
+.cat-item__date {
+  font-size: 10.5px;
+  color: var(--text-light);
+}
+
+/* Tags Cloud */
+.widget-tags__cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.widget-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  background: var(--bg-muted);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+.widget-tag:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* Sidebar Ad Banner */
+.ad-slot--sidebar {
+  background: var(--bg-muted);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  text-align: center;
+  color: var(--text-light);
+  font-size: 12px;
+}
+
+/* Single Post Details */
+.single-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  box-shadow: var(--shadow-sm);
+}
+.breadcrumb {
+  margin-bottom: 16px;
+  font-size: 12.5px;
+  color: var(--text-light);
+}
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.breadcrumb__item a:hover {
+  color: var(--color-accent);
+}
+.breadcrumb__sep {
+  font-size: 10px;
+  color: var(--text-light);
+}
+.single-meta__cat {
+  display: inline-block;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 11.5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.single-title {
+  font-family: var(--font-body);
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1.35;
+  color: var(--text-main);
+  margin-bottom: 16px;
+}
+.single-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 20px;
+  font-size: 12.5px;
+  color: var(--text-light);
+}
+.single-meta__left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+.single-meta__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.single-meta__item i {
+  color: var(--color-accent);
+}
+
+/* Font Resizer */
+.font-resizer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: var(--bg-muted);
+  border-radius: var(--radius-full);
+  margin-bottom: 24px;
+  width: fit-content;
+}
+.font-resizer__label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.font-resizer__controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.font-resizer__btn {
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+.font-resizer__btn--active, .font-resizer__btn:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+/* AI Summary Box */
+.ai-summary-box {
+  background: linear-gradient(135deg, rgba(26, 86, 219, 0.05), rgba(207, 46, 46, 0.05));
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+.ai-summary-box__title {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ai-summary-box__desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* Article Body */
+.article-body {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-main);
+  word-wrap: break-word;
+}
+.article-body p {
+  margin-bottom: 20px;
+}
+.article-body h2, .article-body h3, .article-body h4 {
+  font-family: var(--font-body);
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 32px 0 16px;
+  line-height: 1.4;
+}
+.article-body h2 { font-size: 22px; }
+.article-body h3 { font-size: 19px; }
+.article-body blockquote {
+  border-left: 4px solid var(--color-accent);
+  padding: 14px 20px;
+  background: var(--bg-muted);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-style: italic;
+  margin: 24px 0;
+  color: var(--text-muted);
+}
+.article-body img {
+  border-radius: var(--radius-md);
+  margin: 20px auto;
+}
+
+/* Social Share Bar */
+.share-bar {
+  margin: 32px 0;
+  padding: 18px 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.share-bar__title {
+  font-weight: 800;
+  font-size: 13.5px;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.share-bar__btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 12px;
+  color: #ffffff !important;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.share-btn--wa { background: #25d366; }
+.share-btn--fb { background: #1877f2; }
+.share-btn--tw { background: #0f172a; }
+.share-btn--tg { background: #229ed9; }
+.share-btn--copy { background: var(--text-muted); }
+.share-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Post Author Bio Box */
+.post-author-box {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--bg-muted);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin: 32px 0;
+}
+.post-author-box__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.post-author-box__name {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+.post-author-box__desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Comments */
+#comments {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 2px solid var(--border-color);
+}
+
+/* Footer Section */
+.site-footer {
+  background: #0b0f19;
+  color: #94a3b8;
+  border-top: 4px solid var(--color-accent);
+  padding: 48px 0 0;
+  font-size: 13.5px;
+}
+.footer-main__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: 36px;
+  padding-bottom: 40px;
+}
+.footer-logo-title {
+  font-size: 24px;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+.footer-logo-title span {
+  color: var(--color-accent);
+}
+.footer-brand__desc {
+  line-height: 1.6;
+  margin-bottom: 18px;
+  color: #94a3b8;
+}
+.footer-contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: #cbd5e1;
+}
+.footer-contact i {
+  color: var(--color-accent);
+  margin-top: 3px;
+}
+.footer-col__title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  padding-bottom: 8px;
+}
+.footer-col__title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 36px;
+  height: 2px;
+  background: var(--color-accent);
+}
+.footer-links li {
+  margin-bottom: 10px;
+}
+.footer-links a {
+  color: #94a3b8;
+  transition: var(--transition);
+}
+.footer-links a:hover {
+  color: #ffffff;
+  padding-left: 4px;
+}
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+.footer-social {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: #1e293b;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+.footer-social:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+.footer-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #1e293b;
+  color: #38bdf8;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+}
+.footer-copyright {
+  background: #050811;
+  border-top: 1px solid #1e293b;
+  padding: 18px 0;
+  text-align: center;
+  font-size: 12.5px;
+  color: #64748b;
+}
+
+/* Back to Top */
+.back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 4px 14px rgba(207, 46, 46, 0.4);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: var(--transition);
+  z-index: 9999;
+}
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-3px);
+}
+
+/* Toast Copy Link Modal */
+.copy-modal {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #0f172a;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--shadow-xl);
+  z-index: 99999;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+.copy-modal.active {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+.copy-modal i {
+  color: #22c55e;
+}
+
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES (MOBILE PIXEL-PERFECT AS IN SCREENSHOT 2)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .main-layout__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .sidebar {
+    position: static !important;
+    top: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 54px;
+  }
+  .top-nav__brand-mobile {
+    display: block;
+  }
+  .menu-toggle.d-desktop-only,
+  .top-nav__center {
+    display: none;
+  }
+  .btn-mobile-search,
+  .menu-toggle-mobile {
+    display: flex;
+  }
+  .site-branding {
+    display: none;
+  }
+  .hero-swiper {
+    height: 250px;
+  }
+
+  /* 2 Columns Grid on Mobile under NASIONAL (Matches Screenshot 2) */
+  .article-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    margin-bottom: 24px !important;
+  }
+  .article-card__img-wrap {
+    aspect-ratio: 16 / 10 !important;
+  }
+  .article-card__body {
+    padding: 10px 8px !important;
+  }
+  .article-card__title {
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+    margin-bottom: 4px !important;
+  }
+  .article-card__date {
+    font-size: 10px !important;
+  }
+
+  /* Horizontal Feed Item on Mobile (Matches Screenshot 2) */
+  .feed-item {
+    flex-direction: row !important;
+    gap: 12px !important;
+    padding: 10px !important;
+    align-items: center !important;
+  }
+  .feed-item__img-wrap {
+    width: 110px !important;
+    height: 76px !important;
+    flex-shrink: 0 !important;
+    border-radius: 6px !important;
+  }
+  .feed-item__title {
+    font-size: 13.5px !important;
+    line-height: 1.35 !important;
+    margin-bottom: 3px !important;
+  }
+  .feed-item__excerpt {
+    display: none !important;
+  }
+  .feed-item__cat {
+    font-size: 9.5px !important;
+    padding: 1.5px 5px !important;
+    margin-bottom: 2px !important;
+  }
+  .feed-item__meta {
+    font-size: 10.5px !important;
+    gap: 8px !important;
+  }
+
+  /* Headline Article Mobile */
+  .featured-article__body {
+    padding: 14px !important;
+  }
+  .featured-article__title {
+    font-size: 17px !important;
+    line-height: 1.35 !important;
+  }
+  .featured-article__excerpt {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Footer Mobile */
+  .footer-main__grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px 14px !important;
+    text-align: center !important;
+  }
+  .footer-main__grid > div:first-child,
+  .footer-main__grid > div:last-child {
+    grid-column: 1 / -1 !important;
+  }
+  .footer-socials, .footer-badges {
+    justify-content: center !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+  .footer-col__title::after {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .single-content {
+    padding: 16px;
+  }
+  .single-title {
+    font-size: 22px;
+  }
+  .btn-order-cta {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+}
+    ]]></b:skin>
+
+    <b:template-skin>
+        <![CDATA[
+        body#layout { width: 100%; }
+        ]]>
+    </b:template-skin>
+
+    <!-- Early Theme & Language Init -->
+    <script>
+        //<![CDATA[
+        (function() {
+            try {
+                if (localStorage.getItem('smartnews_theme') === 'dark') {
+                    document.documentElement.classList.add('dark-mode');
+                } else {
+                    document.documentElement.classList.remove('dark-mode');
+                }
+            } catch (e) {}
+        })();
+        //]]>
+    </script>
+</head>
+
+<body>
+    <!-- Skip to Content Accessibility -->
+    <a class='skip-link' href='#mainContent'>Lewati ke konten utama</a>
+
+    <!-- Top Reading Progress Indicator -->
+    <div class='scroll-progress-bar' id='scrollProgressBar'/>
+
+    <!-- 1. STICKY TOP NAVIGATION BAR -->
+    <header class='top-nav' id='topNav'>
+        <div class='top-nav__inner container'>
+            <div class='top-nav__left'>
+                <!-- Mobile Brand Logo -->
+                <a class='top-nav__brand-mobile' expr:href='data:blog.homepageUrl'>
+                    Smart<span>News</span>
+                </a>
+
+                <!-- Desktop Menu Drawer Toggle -->
+                <button aria-label='Buka Menu Navigasi' class='menu-toggle d-desktop-only' id='menuToggle' type='button'>
+                    <span class='menu-toggle__circle'><i class='fas fa-bars'/></span>
+                    <span class='menu-toggle__label'>MENU</span>
+                </button>
+            </div>
+
+            <!-- Desktop Instant Search -->
+            <div class='top-nav__center'>
+                <form action='/search' class='search-form' method='GET' role='search'>
+                    <button aria-label='Cari' class='search-form__btn' type='submit'>
+                        <i class='fas fa-search'/>
+                    </button>
+                    <input autocomplete='off' class='search-form__input' id='mainSearchInput' name='q' placeholder='Cari berita terkini...' type='search'/>
+                </form>
+            </div>
+
+            <!-- Right Actions (Both Desktop & Mobile) -->
+            <div class='top-nav__right'>
+                <!-- Order / CTA Link to https://smartnews.berandadigital/penjualan -->
+                <a class='btn-order-cta' href='https://smartnews.berandadigital/penjualan' target='_blank'>
+                    <i class='fas fa-shopping-cart'/> <span>Pesan Web</span>
+                </a>
+
+                <!-- Dual Language Switcher (ID / EN) -->
+                <div class='lang-switcher'>
+                    <button class='lang-btn active' id='langBtnID' onclick='switchLanguage(&quot;id&quot;)' title='Bahasa Indonesia' type='button'>ID</button>
+                    <span class='lang-divider'>|</span>
+                    <button class='lang-btn' id='langBtnEN' onclick='switchLanguage(&quot;en&quot;)' title='English' type='button'>EN</button>
+                </div>
+
+                <!-- Dark Mode Button -->
+                <button aria-label='Mode Gelap' class='btn-dark-mode' id='darkModeBtn' title='Mode Gelap' type='button'>
+                    <i class='fas fa-moon'/>
+                </button>
+
+                <!-- Mobile Search Trigger -->
+                <button aria-label='Buka pencarian' class='btn-mobile-search' id='mobileSearchToggle' type='button'>
+                    <i class='fas fa-search'/>
+                </button>
+
+                <!-- Mobile Drawer Trigger -->
+                <button aria-label='Buka menu mobile' class='menu-toggle-mobile' id='mobileMenuToggle' type='button'>
+                    <i class='fas fa-bars'/>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Expandable Search Bar -->
+        <div class='mobile-search-bar' id='mobileSearchBar'>
+            <div class='container'>
+                <form action='/search' class='search-form search-form--mobile' method='GET' role='search'>
+                    <button aria-label='Cari' class='search-form__btn' type='submit'><i class='fas fa-search'/></button>
+                    <input class='search-form__input' id='mobileSearchInput' name='q' placeholder='Ketik kata kunci berita...' type='search'/>
+                    <button aria-label='Tutup pencarian' class='mobile-search-close' id='mobileSearchClose' type='button'>
+                        <i class='fas fa-times'/>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. OFFCANVAS SIDEBAR DRAWER -->
+    <div class='sidebar-overlay' id='sidebarOverlay'/>
+    <aside aria-label='Menu Navigasi Sidebar' class='sidebar-drawer' id='sidebarDrawer'>
+        <div class='sidebar-drawer__header'>
+            <a class='sidebar-brand-title' expr:href='data:blog.homepageUrl'>
+                Smart<span>News</span>
+            </a>
+            <button aria-label='Tutup menu' class='sidebar-drawer__close' id='sidebarClose' type='button'>
+                <i class='fas fa-times'/>
+            </button>
+        </div>
+
+        <nav class='sidebar-drawer__nav'>
+            <ul>
+                <li class='active'><a expr:href='data:blog.homepageUrl'><i class='fas fa-home' style='width:20px;'/> <span class='trans-home'>Beranda</span></a></li>
+                <li><a href='/search/label/Nasional'><i class='fas fa-flag' style='width:20px;'/> Nasional</a></li>
+                <li><a href='/search/label/Politik'><i class='fas fa-landmark' style='width:20px;'/> Politik</a></li>
+                <li><a href='/search/label/Ekonomi'><i class='fas fa-chart-line' style='width:20px;'/> Ekonomi</a></li>
+                <li><a href='/search/label/Teknologi'><i class='fas fa-laptop-code' style='width:20px;'/> Teknologi</a></li>
+                <li><a href='/search/label/Internasional'><i class='fas fa-globe' style='width:20px;'/> Internasional</a></li>
+                <li><a href='/search/label/Olahraga'><i class='fas fa-futbol' style='width:20px;'/> Olahraga</a></li>
+                <li><a href='/search/label/Otomotif'><i class='fas fa-car' style='width:20px;'/> Otomotif</a></li>
+                <li><a href='/search/label/Gaya%20Hidup'><i class='fas fa-heart' style='width:20px;'/> Gaya Hidup</a></li>
+            </ul>
+        </nav>
+
+        <div style='padding: 0 20px 16px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 14px;'>
+            <span style='font-size: 13px; font-weight: 600;'>Bahasa / Language:</span>
+            <div class='lang-switcher'>
+                <button class='lang-btn active' id='drawerLangID' onclick='switchLanguage(&quot;id&quot;)' type='button'>ID</button>
+                <span class='lang-divider'>|</span>
+                <button class='lang-btn' id='drawerLangEN' onclick='switchLanguage(&quot;en&quot;)' type='button'>EN</button>
+            </div>
+        </div>
+
+        <div style='padding: 0 20px 16px;'>
+            <a class='btn-order-cta' href='https://smartnews.berandadigital/penjualan' style='width: 100%; justify-content: center; padding: 10px 16px;' target='_blank'>
+                <i class='fas fa-shopping-cart'/> Pesan Web SmartNews
+            </a>
+        </div>
+
+        <div class='sidebar-drawer__socials'>
+            <a aria-label='Facebook' class='sidebar-drawer__social' href='https://facebook.com' target='_blank'><i class='fab fa-facebook-f'/></a>
+            <a aria-label='Twitter' class='sidebar-drawer__social' href='https://twitter.com' target='_blank'><i class='fab fa-x-twitter'/></a>
+            <a aria-label='Instagram' class='sidebar-drawer__social' href='https://instagram.com' target='_blank'><i class='fab fa-instagram'/></a>
+            <a aria-label='TikTok' class='sidebar-drawer__social' href='https://tiktok.com' target='_blank'><i class='fab fa-tiktok'/></a>
+            <a aria-label='YouTube' class='sidebar-drawer__social' href='https://youtube.com' target='_blank'><i class='fab fa-youtube'/></a>
+        </div>
+
+        <div class='sidebar-drawer__copyright'>
+            Copyright &#169; <script>document.write(new Date().getFullYear())</script> SmartNews. All rights reserved.
+        </div>
+    </aside>
+
+    <!-- 3. SITE HEADER BRANDING & AD BANNER -->
+    <section class='site-branding' id='siteBranding'>
+        <div class='container site-branding__inner'>
+            <div>
+                <a class='brand-logo-text' expr:href='data:blog.homepageUrl'>
+                    Smart<span>News</span>
+                </a>
+                <p class='brand-tagline'>Portal Berita Terpercaya &amp; Cerdas</p>
+            </div>
+
+            <!-- Header Banner Ad -->
+            <div class='header-banner-ad'>
+                <span><i class='fas fa-bolt' style='color:#fbbf24; margin-right:6px;'/> Portal Berita Modern Cepat, Cerdas &amp; Terpercaya</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PRIMARY HORIZONTAL NAVIGATION / CATEGORY BAR (Gradient Blue as in Original Web) -->
+    <nav aria-label='Navigasi Kategori Utama' class='main-nav' id='mainNav'>
+        <div class='main-nav__inner container'>
+            <div class='main-nav__scroll-wrap'>
+                <ul class='menu'>
+                    <li class='current-menu-item'><a expr:href='data:blog.homepageUrl'><i class='fas fa-home'/> <span class='trans-home'>Beranda</span></a></li>
+                    <li><a href='/search/label/Nasional'><i class='fas fa-flag'/> Nasional</a></li>
+                    <li><a href='/search/label/Politik'><i class='fas fa-landmark'/> Politik</a></li>
+                    <li><a href='/search/label/Ekonomi'><i class='fas fa-chart-line'/> Ekonomi</a></li>
+                    <li><a href='/search/label/Teknologi'><i class='fas fa-laptop-code'/> Teknologi</a></li>
+                    <li><a href='/search/label/Internasional'><i class='fas fa-globe'/> Internasional</a></li>
+                    <li><a href='/search/label/Olahraga'><i class='fas fa-futbol'/> Olahraga</a></li>
+                    <li><a href='/search/label/Otomotif'><i class='fas fa-car'/> Otomotif</a></li>
+                    <li><a href='/search/label/Gaya%20Hidup'><i class='fas fa-heart'/> Gaya Hidup</a></li>
+                </ul>
+            </div>
+            <div class='main-nav__actions d-desktop-only'>
+                <button aria-label='Lihat semua rubrik' class='main-nav__all-toggle' id='allRubricsToggle' type='button'>
+                    <i class='fas fa-th-large'/> <span class='trans-all-rubrics'>Semua Rubrik</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 5. BREAKING NEWS MARQUEE TICKER -->
+    <section aria-label='Breaking News Ticker' class='breaking-news-bar'>
+        <div class='breaking-news__inner container'>
+            <div class='breaking-news__badge'>
+                <span class='breaking-news__pulse'/>
+                <i class='fas fa-bolt'/>
+                <span>BREAKING</span>
+            </div>
+            <div class='breaking-news__ticker-wrap'>
+                <div class='breaking-news__ticker-track' id='breakingTickerTrack'>
+                    <span class='breaking-news__item'><span class='breaking-news__category'>Nasional</span> Pemerintah Resmi Luncurkan Logo dan Identitas Visual HUT Ke-81 Kemerdekaan RI <span class='breaking-news__divider'>&#8226;</span></span>
+                    <span class='breaking-news__item'><span class='breaking-news__category'>Ekonomi</span> IHSG Menguat Signifikan Ditopang Sektor Teknologi dan Perbankan Digital <span class='breaking-news__divider'>&#8226;</span></span>
+                    <span class='breaking-news__item'><span class='breaking-news__category'>Otomotif</span> Inovasi Mobil Listrik Nasional Siap Diproduksi Massal Mulai Tahun Depan <span class='breaking-news__divider'>&#8226;</span></span>
+                    <span class='breaking-news__item'><span class='breaking-news__category'>Olahraga</span> Timnas Indonesia Siap Hadapi Laga Penentuan Kualifikasi Piala Dunia <span class='breaking-news__divider'>&#8226;</span></span>
+                    <span class='breaking-news__item'><span class='breaking-news__category'>Teknologi</span> Adopsi AI Generatif Sektor Pendidikan Meningkat Pesat <span class='breaking-news__divider'>&#8226;</span></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. TRENDING TAGS BAR -->
+    <section aria-label='Topik Hangat' class='trending-tags'>
+        <div class='trending-tags__inner container'>
+            <span class='trending-tags__label'><i class='fas fa-fire'/> Trending:</span>
+            <div class='trending-tags__scroll'>
+                <a class='trending-tags__item' href='/search/label/HUTRI81'>#HUTRI81</a>
+                <a class='trending-tags__item' href='/search/label/IHSG'>#IHSG</a>
+                <a class='trending-tags__item' href='/search/label/MobilListrik'>#MobilListrik</a>
+                <a class='trending-tags__item' href='/search/label/TimnasIndonesia'>#TimnasIndonesia</a>
+                <a class='trending-tags__item' href='/search/label/AI'>#AI</a>
+                <a class='trending-tags__item' href='/search/label/Pemilu'>#Pemilu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. HERO SLIDER CAROUSEL (5 Slides displayed simultaneously on Desktop!) -->
+    <b:if cond='data:view.isHomepage'>
+        <section aria-label='Berita Pilihan Utama' class='hero-slider-section'>
+            <div class='container'>
+                <div class='hero-slider-section__overflow'>
+                    <div class='swiper hero-swiper' id='heroSwiper'>
+                        <div class='swiper-wrapper' id='heroSwiperWrapper'>
+                            <!-- Slide 1 -->
+                            <div class='swiper-slide'>
+                                <article class='slide-card'>
+                                    <div class='slide-card__img-wrap'>
+                                        <img alt='Inovasi Teknologi AI' class='slide-card__img' src='https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&amp;fit=crop&amp;w=600&amp;q=80'/>
+                                        <div class='media-badge media-badge--video'><i class='fas fa-play'/> <span>02:45</span></div>
+                                    </div>
+                                    <div class='slide-card__overlay'>
+                                        <a class='slide-card__cat' href='/search/label/Teknologi'>Teknologi</a>
+                                        <h3 class='slide-card__title'><a href='/search/label/Teknologi'>Adopsi Kecerdasan Buatan Generatif Sektor Pendidikan dan Riset Nasional</a></h3>
+                                        <span class='slide-card__time'><i class='fas fa-clock'/> 19 Agustus 2026</span>
+                                    </div>
+                                </article>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class='swiper-slide'>
+                                <article class='slide-card'>
+                                    <div class='slide-card__img-wrap'>
+                                        <img alt='HUT RI 81' class='slide-card__img' src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&amp;fit=crop&amp;w=600&amp;q=80'/>
+                                        <div class='media-badge media-badge--photo'><i class='fas fa-camera'/> <span>3 Foto</span></div>
+                                    </div>
+                                    <div class='slide-card__overlay'>
+                                        <a class='slide-card__cat' href='/search/label/Nasional'>Nasional</a>
+                                        <h3 class='slide-card__title'><a href='/search/label/Nasional'>Pemerintah Resmi Luncurkan Logo dan Identitas Visual HUT Ke-81 RI</a></h3>
+                                        <span class='slide-card__time'><i class='fas fa-clock'/> 21 Agustus 2026</span>
+                                    </div>
+                                </article>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class='swiper-slide'>
+                                <article class='slide-card'>
+                                    <div class='slide-card__img-wrap'>
+                                        <img alt='IHSG Pasar Saham' class='slide-card__img' src='https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&amp;fit=crop&amp;w=600&amp;q=80'/>
+                                    </div>
+                                    <div class='slide-card__overlay'>
+                                        <a class='slide-card__cat' href='/search/label/Ekonomi'>Ekonomi</a>
+                                        <h3 class='slide-card__title'><a href='/search/label/Ekonomi'>IHSG Menguat Signifikan Ditopang Sektor Teknologi dan Perbankan</a></h3>
+                                        <span class='slide-card__time'><i class='fas fa-clock'/> 21 Agustus 2026</span>
+                                    </div>
+                                </article>
+                            </div>
+                            <!-- Slide 4 -->
+                            <div class='swiper-slide'>
+                                <article class='slide-card'>
+                                    <div class='slide-card__img-wrap'>
+                                        <img alt='Mobil Listrik Nasional' class='slide-card__img' src='https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&amp;fit=crop&amp;w=600&amp;q=80'/>
+                                        <div class='media-badge media-badge--video'><i class='fas fa-play'/> <span>03:15</span></div>
+                                    </div>
+                                    <div class='slide-card__overlay'>
+                                        <a class='slide-card__cat' href='/search/label/Otomotif'>Otomotif</a>
+                                        <h3 class='slide-card__title'><a href='/search/label/Otomotif'>Inovasi Mobil Listrik Nasional Siap Diproduksi Massal Tahun Depan</a></h3>
+                                        <span class='slide-card__time'><i class='fas fa-clock'/> 20 Agustus 2026</span>
+                                    </div>
+                                </article>
+                            </div>
+                            <!-- Slide 5 -->
+                            <div class='swiper-slide'>
+                                <article class='slide-card'>
+                                    <div class='slide-card__img-wrap'>
+                                        <img alt='Timnas Indonesia' class='slide-card__img' src='https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&amp;fit=crop&amp;w=600&amp;q=80'/>
+                                        <div class='media-badge media-badge--photo'><i class='fas fa-camera'/> <span>5 Foto</span></div>
+                                    </div>
+                                    <div class='slide-card__overlay'>
+                                        <a class='slide-card__cat' href='/search/label/Olahraga'>Olahraga</a>
+                                        <h3 class='slide-card__title'><a href='/search/label/Olahraga'>Timnas Indonesia Siap Hadapi Laga Penentuan Kualifikasi Piala Dunia</a></h3>
+                                        <span class='slide-card__time'><i class='fas fa-clock'/> 20 Agustus 2026</span>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                        <div class='swiper-button-prev'/>
+                        <div class='swiper-button-next'/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </b:if>
+
+    <!-- 8. MAIN CONTENT LAYOUT (2 Columns) -->
+    <main class='main-layout' id='mainContent'>
+        <div class='container'>
+            <div class='main-layout__grid'>
+                
+                <!-- LEFT CONTENT (Blog Posts Widget) -->
+                <div class='main-content'>
+                    <b:section class='main-section' id='main' showaddelement='no'>
+                        <b:widget id='Blog1' locked='true' title='Posting Blog' type='Blog' version='2' visible='true'>
+                            
+                            <b:includable id='main'>
+                                <!-- Search or Label Header Info -->
+                                <b:if cond='data:view.isLabelSearch'>
+                                    <div class='section-head'>
+                                        <h1 class='section-head__title'><i class='fas fa-tag'/> Kategori: <data:blog.pageName/></h1>
+                                    </div>
+                                <b:elseif cond='data:view.isSearch'/>
+                                    <div class='section-head'>
+                                        <h1 class='section-head__title'><i class='fas fa-search'/> Pencarian: &quot;<data:blog.searchQuery/>&quot;</h1>
+                                    </div>
+                                <b:elseif cond='data:view.isArchive'/>
+                                    <div class='section-head'>
+                                        <h1 class='section-head__title'><i class='fas fa-calendar-alt'/> Arsip: <data:blog.pageName/></h1>
+                                    </div>
+                                </b:if>
+
+                                <!-- SINGLE POST VIEW -->
+                                <b:if cond='data:view.isSingleItem'>
+                                    <b:loop values='data:posts' var='post'>
+                                        <article class='single-content fade-up-in'>
+                                            <!-- Breadcrumb -->
+                                            <nav aria-label='Breadcrumb' class='breadcrumb'>
+                                                <ol>
+                                                    <li class='breadcrumb__item'><a expr:href='data:blog.homepageUrl'>Home</a></li>
+                                                    <li class='breadcrumb__sep'><i class='fas fa-chevron-right'/></li>
+                                                    <b:if cond='data:post.labels and not data:post.labels.empty'>
+                                                        <b:loop values='data:post.labels' var='label'>
+                                                            <b:if cond='data:label.isLast'>
+                                                                <li class='breadcrumb__item'><a expr:href='data:label.url'><data:label.name/></a></li>
+                                                                <li class='breadcrumb__sep'><i class='fas fa-chevron-right'/></li>
+                                                            </b:if>
+                                                        </b:loop>
+                                                    </b:if>
+                                                    <li class='breadcrumb__item breadcrumb__item--active'><data:post.title/></li>
+                                                </ol>
+                                            </nav>
+
+                                            <!-- Category Badge -->
+                                            <b:if cond='data:post.labels and not data:post.labels.empty'>
+                                                <b:loop values='data:post.labels' var='label'>
+                                                    <b:if cond='data:label.isFirst'>
+                                                        <a class='single-meta__cat' expr:href='data:label.url'><data:label.name/></a>
+                                                    </b:if>
+                                                </b:loop>
+                                            </b:if>
+
+                                            <!-- H1 Title -->
+                                            <h1 class='single-title'><data:post.title/></h1>
+
+                                            <!-- Post Meta -->
+                                            <div class='single-meta'>
+                                                <div class='single-meta__left'>
+                                                    <span class='single-meta__item'>
+                                                        <i class='fas fa-user-circle'/>
+                                                        <strong><data:post.author.name/></strong>
+                                                    </span>
+                                                    <span class='single-meta__item'>
+                                                        <i class='fas fa-calendar-alt'/>
+                                                        <time><data:post.date/></time>
+                                                    </span>
+                                                    <span class='single-meta__item'>
+                                                        <i class='fas fa-clock'/>
+                                                        <span id='postReadingTime'>3 menit membaca</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <!-- Font Size Resizer -->
+                                            <div class='font-resizer'>
+                                                <span class='font-resizer__label'>Ukuran Teks:</span>
+                                                <div class='font-resizer__controls'>
+                                                    <button class='font-resizer__btn' id='fontDecrease' type='button'>A<sup>−</sup></button>
+                                                    <button class='font-resizer__btn font-resizer__btn--active' id='fontReset' type='button'>A</button>
+                                                    <button class='font-resizer__btn' id='fontIncrease' type='button'>A<sup>+</sup></button>
+                                                </div>
+                                            </div>
+
+                                            <!-- AI Summary Highlight -->
+                                            <div class='ai-summary-box'>
+                                                <div class='ai-summary-box__title'>
+                                                    <i class='fas fa-robot'/> Ringkasan Cerdas AI
+                                                </div>
+                                                <p class='ai-summary-box__desc'>
+                                                    Informasi utama dari artikel ini menyajikan fakta terkini dan perkembangan situasi yang telah divalidasi oleh dewan redaksi SmartNews.
+                                                </p>
+                                            </div>
+
+                                            <!-- Post Body -->
+                                            <div class='article-body' id='articleBody'>
+                                                <data:post.body/>
+                                            </div>
+
+                                            <!-- Social Share Bar -->
+                                            <div class='share-bar'>
+                                                <span class='share-bar__title'><i class='fas fa-share-alt'/> Bagikan Artikel:</span>
+                                                <div class='share-bar__btns'>
+                                                    <a class='share-btn share-btn--wa' expr:href='&quot;https://api.whatsapp.com/send?text=&quot; + data:post.title + &quot;%20&quot; + data:post.url' target='_blank'>
+                                                        <i class='fab fa-whatsapp'/> WhatsApp
+                                                    </a>
+                                                    <a class='share-btn share-btn--fb' expr:href='&quot;https://www.facebook.com/sharer/sharer.php?u=&quot; + data:post.url' target='_blank'>
+                                                        <i class='fab fa-facebook-f'/> Facebook
+                                                    </a>
+                                                    <a class='share-btn share-btn--tw' expr:href='&quot;https://twitter.com/intent/tweet?text=&quot; + data:post.title + &quot;&amp;url=&quot; + data:post.url' target='_blank'>
+                                                        <i class='fab fa-x-twitter'/> Twitter
+                                                    </a>
+                                                    <a class='share-btn share-btn--tg' expr:href='&quot;https://t.me/share/url?url=&quot; + data:post.url + &quot;&amp;text=&quot; + data:post.title' target='_blank'>
+                                                        <i class='fab fa-telegram-plane'/> Telegram
+                                                    </a>
+                                                    <button class='share-btn share-btn--copy' id='btnCopyLink' type='button'>
+                                                        <i class='fas fa-link'/> Salin Link
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <!-- Post Author Bio Box -->
+                                            <div class='post-author-box'>
+                                                <div class='post-author-box__avatar'><i class='fas fa-user-edit'/></div>
+                                                <div>
+                                                    <h3 class='post-author-box__name'><data:post.author.name/></h3>
+                                                    <p class='post-author-box__desc'>Jurnalis dan kontributor redaksi SmartNews, berfokus menyajikan laporan terverifikasi, akurat, dan berimbang.</p>
+                                                </div>
+                                            </div>
+
+                                            <!-- Comments Section -->
+                                            <b:include cond='data:post.allowComments' data='post' name='comments'/>
+                                        </article>
+                                    </b:loop>
+
+                                <!-- HOMEPAGE & ARCHIVE FEED -->
+                                <b:else/>
+                                    <b:if cond='data:view.isHomepage'>
+                                        <!-- 1. FEATURED HEADLINE ARTICLE (Large Card) -->
+                                        <b:if cond='data:posts and not data:posts.empty'>
+                                            <b:loop index='pIndex' values='data:posts' var='leadPost'>
+                                                <b:if cond='data:pIndex == 0'>
+                                                    <article class='featured-article fade-up-in'>
+                                                        <div class='featured-article__img-wrap'>
+                                                            <a expr:href='data:leadPost.url'>
+                                                                <b:if cond='data:leadPost.featuredImage'>
+                                                                    <img alt='Gambar Berita' class='featured-article__img' expr:src='data:leadPost.featuredImage'/>
+                                                                <b:else/>
+                                                                    <img alt='SmartNews' class='featured-article__img' src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&amp;fit=crop&amp;w=800&amp;q=80'/>
+                                                                </b:if>
+                                                            </a>
+                                                        </div>
+                                                        <div class='featured-article__body'>
+                                                            <b:if cond='data:leadPost.labels and not data:leadPost.labels.empty'>
+                                                                <b:loop values='data:leadPost.labels' var='label'>
+                                                                    <b:if cond='data:label.isFirst'>
+                                                                        <a class='featured-article__cat' expr:href='data:label.url'><data:label.name/></a>
+                                                                    </b:if>
+                                                                </b:loop>
+                                                            <b:else/>
+                                                                <a class='featured-article__cat' href='/search/label/Nasional'>Nasional</a>
+                                                            </b:if>
+                                                            <h2 class='featured-article__title'>
+                                                                <a expr:href='data:leadPost.url'><data:leadPost.title/></a>
+                                                            </h2>
+                                                            <b:if cond='data:leadPost.snippet'>
+                                                                <p class='featured-article__excerpt'><data:leadPost.snippet/></p>
+                                                            </b:if>
+                                                            <div class='featured-article__meta'>
+                                                                <span><i class='fas fa-user-circle'/> <data:leadPost.author.name/></span>
+                                                                <span><i class='fas fa-calendar-alt'/> <data:leadPost.date/></span>
+                                                            </div>
+                                                        </div>
+                                                    </article>
+                                                </b:if>
+                                            </b:loop>
+                                        </b:if>
+
+                                        <!-- 2. CATEGORY SECTION: 🚩 NASIONAL (2 COLUMNS GRID OF 6 CARDS) -->
+                                        <div class='section-head'>
+                                            <h2 class='section-head__title'>
+                                                <i class='fas fa-flag'/> Nasional
+                                            </h2>
+                                            <a class='section-head__more' href='/search/label/Nasional'>
+                                                <span class='trans-view-all'>Lihat Semua</span> <i class='fas fa-chevron-right'/>
+                                            </a>
+                                        </div>
+
+                                        <div class='article-grid'>
+                                            <b:if cond='data:posts and not data:posts.empty'>
+                                                <b:loop index='gIndex' values='data:posts' var='gPost'>
+                                                    <b:if cond='data:gIndex &gt;= 1 and data:gIndex &lt;= 6'>
+                                                        <article class='article-card fade-up-in'>
+                                                            <div class='article-card__img-wrap'>
+                                                                <a expr:href='data:gPost.url'>
+                                                                    <b:if cond='data:gPost.featuredImage'>
+                                                                        <img alt='Foto' class='article-card__img' expr:src='data:gPost.featuredImage'/>
+                                                                    <b:else/>
+                                                                        <img alt='Foto' class='article-card__img' src='https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&amp;fit=crop&amp;w=400&amp;q=80'/>
+                                                                    </b:if>
+                                                                </a>
+                                                                <b:if cond='data:gIndex == 1 or data:gIndex == 3'>
+                                                                    <div class='media-badge media-badge--photo'><i class='fas fa-camera'/> <span>3 Foto</span></div>
+                                                                <b:elseif cond='data:gIndex == 2'/>
+                                                                    <div class='media-badge media-badge--video'><i class='fas fa-play'/> <span>02:15</span></div>
+                                                                </b:if>
+                                                                <b:if cond='data:gPost.labels and not data:post.labels.empty'>
+                                                                    <b:loop values='data:gPost.labels' var='label'>
+                                                                        <b:if cond='data:label.isFirst'>
+                                                                            <a class='article-card__cat' expr:href='data:label.url'><data:label.name/></a>
+                                                                        </b:if>
+                                                                    </b:loop>
+                                                                <b:else/>
+                                                                    <a class='article-card__cat' href='/search/label/Nasional'>Nasional</a>
+                                                                </b:if>
+                                                            </div>
+                                                            <div class='article-card__body'>
+                                                                <h3 class='article-card__title'>
+                                                                    <a expr:href='data:gPost.url'><data:gPost.title/></a>
+                                                                </h3>
+                                                                <span class='article-card__date'><i class='fas fa-clock'/> <data:gPost.date/></span>
+                                                            </div>
+                                                        </article>
+                                                    </b:if>
+                                                </b:loop>
+                                            </b:if>
+                                        </div>
+                                    </b:if>
+
+                                    <!-- 3. LATEST NEWS FEED (📰 BERITA TERKINI) -->
+                                    <div class='section-head'>
+                                        <h2 class='section-head__title'><i class='fas fa-newspaper'/> <span class='trans-latest'>Berita Terkini</span></h2>
+                                    </div>
+
+                                    <!-- Post Feed List -->
+                                    <div class='article-feed-list' id='articleFeedList'>
+                                        <b:if cond='data:posts and not data:posts.empty'>
+                                            <b:loop index='fIndex' values='data:posts' var='post'>
+                                                <b:if cond='data:view.isHomepage ? (data:fIndex &gt;= 7) : true'>
+                                                    <article class='feed-item fade-up-in'>
+                                                        <div class='feed-item__img-wrap'>
+                                                            <a expr:href='data:post.url'>
+                                                                <b:if cond='data:post.featuredImage'>
+                                                                    <img alt='Gambar' class='feed-item__img' expr:src='data:post.featuredImage' loading='lazy'/>
+                                                                <b:else/>
+                                                                    <img alt='Gambar' class='feed-item__img' loading='lazy' src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&amp;fit=crop&amp;w=400&amp;q=80'/>
+                                                                </b:if>
+                                                            </a>
+                                                        </div>
+                                                        <div class='feed-item__body'>
+                                                            <b:if cond='data:post.labels and not data:post.labels.empty'>
+                                                                <b:loop values='data:post.labels' var='label'>
+                                                                    <b:if cond='data:label.isFirst'>
+                                                                        <a class='feed-item__cat' expr:href='data:label.url'><data:label.name/></a>
+                                                                    </b:if>
+                                                                </b:loop>
+                                                            </b:if>
+                                                            <h3 class='feed-item__title'>
+                                                                <a expr:href='data:post.url'><data:post.title/></a>
+                                                            </h3>
+                                                            <b:if cond='data:post.snippet'>
+                                                                <p class='feed-item__excerpt'><data:post.snippet/></p>
+                                                            </b:if>
+                                                            <div class='feed-item__meta'>
+                                                                <span><i class='fas fa-user-circle'/> <data:post.author.name/></span>
+                                                                <span><i class='fas fa-clock'/> <data:post.date/></span>
+                                                            </div>
+                                                        </div>
+                                                    </article>
+                                                </b:if>
+                                            </b:loop>
+                                        </b:if>
+                                    </div>
+
+                                    <!-- Load More AJAX Trigger -->
+                                    <div class='load-more-wrap' id='loadMoreWrap'>
+                                        <button class='btn-load-more' id='btnAjaxLoadMore' type='button'>
+                                            <i class='fas fa-sync-alt'/> <span class='trans-load-more'>Muat Berita Lainnya</span>
+                                        </button>
+                                    </div>
+                                </b:if>
+                            </b:includable>
+
+                            <!-- Comment Form -->
+                            <b:includable id='comments' var='post'>
+                                <div class='comments' id='comments'>
+                                    <div class='section-head'>
+                                        <h3 class='section-head__title'><i class='fas fa-comments'/> Kolom Komentar</h3>
+                                    </div>
+                                    <div id='comment-holder'>
+                                        <p style='margin-bottom:12px; font-size:13.5px; color:var(--text-muted);'>Silakan berikan tanggapan dan komentar Anda secara santun dan bertanggung jawab.</p>
+                                    </div>
+                                </div>
+                            </b:includable>
+
+                            <!-- Empty Sub-Includables to prevent Blogger from dumping default unstyled text -->
+                            <b:includable id='post' var='post'/>
+                            <b:includable id='postCommentsAndAd' var='post'/>
+                            <b:includable id='feedLinks'/>
+                            <b:includable id='feedLinksBody'/>
+                            <b:includable id='status-message'/>
+                        </b:widget>
+                    </b:section>
+                </div>
+
+                <!-- RIGHT SIDEBAR (Sticky on Desktop, Stacked with Blue Headers on Mobile) -->
+                <aside class='sidebar' id='stickySidebar'>
+                    <!-- 1. Trending / Popular News Widget (Ranked 1 - 5) -->
+                    <section class='sidebar-widget'>
+                        <h3 class='widget-title'><i class='fas fa-fire'/> <span class='trans-popular'>BERITA TERPOPULER</span></h3>
+                        <div class='widget-inner'>
+                            <div class='widget-popular__list' id='popularPostsList'>
+                                <div class='popular-item'>
+                                    <span class='popular-item__rank popular-item__rank--top'>1</span>
+                                    <div class='popular-item__body'>
+                                        <span class='popular-item__cat'>Nasional</span>
+                                        <h4 class='popular-item__title'><a href='/search/label/Nasional'>Pemerintah Resmi Luncurkan Logo dan Identitas Visual HUT Ke-81 RI</a></h4>
+                                        <span class='popular-item__date'><i class='fas fa-clock'/> 21 Agustus 2026</span>
+                                    </div>
+                                </div>
+                                <div class='popular-item'>
+                                    <span class='popular-item__rank popular-item__rank--top'>2</span>
+                                    <div class='popular-item__body'>
+                                        <span class='popular-item__cat'>Ekonomi</span>
+                                        <h4 class='popular-item__title'><a href='/search/label/Ekonomi'>IHSG Menguat Signifikan Ditopang Sektor Teknologi dan Perbankan</a></h4>
+                                        <span class='popular-item__date'><i class='fas fa-clock'/> 21 Agustus 2026</span>
+                                    </div>
+                                </div>
+                                <div class='popular-item'>
+                                    <span class='popular-item__rank popular-item__rank--top'>3</span>
+                                    <div class='popular-item__body'>
+                                        <span class='popular-item__cat'>Otomotif</span>
+                                        <h4 class='popular-item__title'><a href='/search/label/Otomotif'>Inovasi Mobil Listrik Nasional Siap Diproduksi Massal Tahun Depan</a></h4>
+                                        <span class='popular-item__date'><i class='fas fa-clock'/> 20 Agustus 2026</span>
+                                    </div>
+                                </div>
+                                <div class='popular-item'>
+                                    <span class='popular-item__rank'>4</span>
+                                    <div class='popular-item__body'>
+                                        <span class='popular-item__cat'>Olahraga</span>
+                                        <h4 class='popular-item__title'><a href='/search/label/Olahraga'>Timnas Indonesia Siap Hadapi Laga Penentuan Kualifikasi Piala Dunia</a></h4>
+                                        <span class='popular-item__date'><i class='fas fa-clock'/> 20 Agustus 2026</span>
+                                    </div>
+                                </div>
+                                <div class='popular-item'>
+                                    <span class='popular-item__rank'>5</span>
+                                    <div class='popular-item__body'>
+                                        <span class='popular-item__cat'>Teknologi</span>
+                                        <h4 class='popular-item__title'><a href='/search/label/Teknologi'>Adopsi AI Generatif Sektor Pendidikan Meningkat Pesat</a></h4>
+                                        <span class='popular-item__date'><i class='fas fa-clock'/> 19 Agustus 2026</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 2. Sidebar Ad Banner Widget Section -->
+                    <b:section class='sidebar-section' id='sidebar-ad' showaddelement='yes'>
+                        <b:widget id='HTML1' locked='false' title='Iklan Sponsor' type='HTML' version='2'>
+                            <b:includable id='main'>
+                                <div class='ad-slot--sidebar'>
+                                    <p><i class='fas fa-bullhorn' style='color:#ef4444; font-size:18px; margin-bottom:6px;'/></p>
+                                    <strong>Ruang Iklan Sponsor (300 x 250)</strong>
+                                    <p style='margin-top:4px;'>Hubungi redaksi untuk pemasangan banner promosi.</p>
+                                </div>
+                            </b:includable>
+                        </b:widget>
+                    </b:section>
+
+                    <!-- 3. Recent News Widget (cat-item with thumbnail) -->
+                    <section class='sidebar-widget'>
+                        <h3 class='widget-title'><i class='fas fa-bolt'/> <span class='trans-latest-widget'>BERITA TERBARU</span></h3>
+                        <div class='widget-inner'>
+                            <div class='widget-recent__list' id='sidebarRecentList'>
+                                <div class='cat-item'>
+                                    <div class='cat-item__img-wrap'>
+                                        <a href='/search/label/Nasional'>
+                                            <img alt='Recent 1' class='cat-item__img' src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&amp;fit=crop&amp;w=160&amp;q=80'/>
+                                        </a>
+                                    </div>
+                                    <div class='cat-item__body'>
+                                        <span class='cat-item__cat'>Nasional</span>
+                                        <h4 class='cat-item__title'><a href='/search/label/Nasional'>Pemerintah Resmi Luncurkan Logo HUT Ke-81 RI</a></h4>
+                                        <span class='cat-item__date'><i class='fas fa-clock'/> 21 Agu 2026</span>
+                                    </div>
+                                </div>
+                                <div class='cat-item'>
+                                    <div class='cat-item__img-wrap'>
+                                        <a href='/search/label/Ekonomi'>
+                                            <img alt='Recent 2' class='cat-item__img' src='https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&amp;fit=crop&amp;w=160&amp;q=80'/>
+                                        </a>
+                                    </div>
+                                    <div class='cat-item__body'>
+                                        <span class='cat-item__cat'>Ekonomi</span>
+                                        <h4 class='cat-item__title'><a href='/search/label/Ekonomi'>IHSG Menguat Signifikan Ditopang Sektor Teknologi</a></h4>
+                                        <span class='cat-item__date'><i class='fas fa-clock'/> 21 Agu 2026</span>
+                                    </div>
+                                </div>
+                                <div class='cat-item'>
+                                    <div class='cat-item__img-wrap'>
+                                        <a href='/search/label/Otomotif'>
+                                            <img alt='Recent 3' class='cat-item__img' src='https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&amp;fit=crop&amp;w=160&amp;q=80'/>
+                                        </a>
+                                    </div>
+                                    <div class='cat-item__body'>
+                                        <span class='cat-item__cat'>Otomotif</span>
+                                        <h4 class='cat-item__title'><a href='/search/label/Otomotif'>Inovasi Mobil Listrik Nasional Berdaya 500 KM</a></h4>
+                                        <span class='cat-item__date'><i class='fas fa-clock'/> 20 Agu 2026</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 4. Tags & Categories Cloud -->
+                    <section class='sidebar-widget'>
+                        <h3 class='widget-title'><i class='fas fa-tags'/> <span class='trans-topics'>TOPIK POPULER</span></h3>
+                        <div class='widget-inner'>
+                            <div class='widget-tags__cloud'>
+                                <a class='widget-tag' href='/search/label/Nasional'>#Nasional</a>
+                                <a class='widget-tag' href='/search/label/Politik'>#Politik</a>
+                                <a class='widget-tag' href='/search/label/Ekonomi'>#Ekonomi</a>
+                                <a class='widget-tag' href='/search/label/Teknologi'>#Teknologi</a>
+                                <a class='widget-tag' href='/search/label/Internasional'>#Internasional</a>
+                                <a class='widget-tag' href='/search/label/Olahraga'>#Olahraga</a>
+                                <a class='widget-tag' href='/search/label/Otomotif'>#Otomotif</a>
+                                <a class='widget-tag' href='/search/label/Gaya%20Hidup'>#GayaHidup</a>
+                                <a class='widget-tag' href='/search/label/Kesehatan'>#Kesehatan</a>
+                            </div>
+                        </div>
+                    </section>
+                </aside>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- 9. SITE FOOTER -->
+    <footer class='site-footer' id='siteFooter'>
+        <div class='footer-main'>
+            <div class='container'>
+                <div class='footer-main__grid'>
+                    <!-- Col 1: Brand & Contact -->
+                    <div>
+                        <div class='footer-logo-title'>Smart<span>News</span></div>
+                        <p class='footer-brand__desc'>
+                            Portal berita Indonesia terpercaya dan cerdas, menyajikan informasi terkini, akurat, dan berimbang untuk seluruh lapisan masyarakat.
+                        </p>
+                        <ul class='footer-contact'>
+                            <li><i class='fas fa-map-marker-alt'/> <span>Jl. Sarjana, Timbangan, Ogan Ilir 30862</span></li>
+                            <li><i class='fas fa-phone-alt'/> <span>(012) 3456-7890</span></li>
+                            <li><i class='fas fa-envelope'/> <span>redaksi@smartnews.id</span></li>
+                        </ul>
+                        <div class='footer-socials'>
+                            <a aria-label='Facebook' class='footer-social' href='https://facebook.com' target='_blank'><i class='fab fa-facebook-f'/></a>
+                            <a aria-label='Twitter' class='footer-social' href='https://twitter.com' target='_blank'><i class='fab fa-x-twitter'/></a>
+                            <a aria-label='Instagram' class='footer-social' href='https://instagram.com' target='_blank'><i class='fab fa-instagram'/></a>
+                            <a aria-label='YouTube' class='footer-social' href='https://youtube.com' target='_blank'><i class='fab fa-youtube'/></a>
+                        </div>
+                    </div>
+
+                    <!-- Col 2: About Links -->
+                    <div>
+                        <h3 class='footer-col__title'>Tentang Kami</h3>
+                        <nav aria-label='Tautan Perusahaan' class='footer-links'>
+                            <ul>
+                                <li><a href='/p/tentang-kami.html'>Tentang Kami</a></li>
+                                <li><a href='/p/susunan-redaksi.html'>Susunan Redaksi</a></li>
+                                <li><a href='/p/pedoman-media-siber.html'>Pedoman Media Siber</a></li>
+                                <li><a href='/p/kode-etik.html'>Kode Etik &amp; Disclaimer</a></li>
+                                <li><a href='/p/kontak.html'>Hubungi Kami</a></li>
+                                <li><a href='/p/pasang-iklan.html'>Pasang Iklan</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!-- Col 3: Categories -->
+                    <div>
+                        <h3 class='footer-col__title'>Kategori Berita</h3>
+                        <nav aria-label='Kategori Berita' class='footer-links'>
+                            <ul>
+                                <li><a href='/search/label/Nasional'>Nasional</a></li>
+                                <li><a href='/search/label/Politik'>Politik</a></li>
+                                <li><a href='/search/label/Ekonomi'>Ekonomi</a></li>
+                                <li><a href='/search/label/Teknologi'>Teknologi</a></li>
+                                <li><a href='/search/label/Internasional'>Internasional</a></li>
+                                <li><a href='/search/label/Olahraga'>Olahraga</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!-- Col 4: Info & Verification Badges -->
+                    <div>
+                        <h3 class='footer-col__title'>Informasi &amp; Iklan</h3>
+                        <nav aria-label='Kebijakan' class='footer-links'>
+                            <ul>
+                                <li><a href='https://smartnews.berandadigital/penjualan' style='color:#ef4444; font-weight:700;' target='_blank'>IKLAN &amp; KERJASAMA</a></li>
+                                <li><a href='/p/privacy-policy.html'>Kebijakan Privasi</a></li>
+                                <li><a href='/p/terms.html'>Syarat &amp; Ketentuan</a></li>
+                            </ul>
+                        </nav>
+                        <div class='footer-badges'>
+                            <span class='footer-badge'><i class='fas fa-certificate'/> Terverifikasi Dewan Pers</span>
+                            <span class='footer-badge'><i class='fas fa-shield-alt'/> Media Siber Terpercaya</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class='footer-copyright'>
+            <div class='container'>
+                <p>Copyright &#169; <script>document.write(new Date().getFullYear())</script> <strong>SmartNews</strong> by <a href='https://smartnews.berandadigital/penjualan' style='color:#ef4444;' target='_blank'>Beranda Teknologi Digital</a>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button aria-label='Kembali ke atas' class='back-to-top' id='backToTop' type='button'>
+        <i class='fas fa-chevron-up'/>
+    </button>
+
+    <!-- Toast Modal Link Copy -->
+    <div class='copy-modal' id='copyModal'>
+        <i class='fas fa-check-circle'/> <span>Link artikel berhasil disalin ke clipboard!</span>
+    </div>
+
+    <!-- Swiper JS CDN -->
+    <script src='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js'/>
+
+    <!-- Google Translate Container (Hidden) -->
+    <div id='google_translate_element' style='display:none;'/>
+
+    <!-- Custom Theme Core Scripts with Language Switcher, Animations, Sticky Sidebar & DOM Code Cleaner -->
+    <script>
+        //<![CDATA[
+        // Google Translate Init
+        function googleTranslateElementInit() {
+            if (window.google && window.google.translate) {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'id',
+                    includedLanguages: 'id,en',
+                    autoDisplay: false
+                }, 'google_translate_element');
+            }
+        }
+
+        function loadGoogleTranslateScript() {
+            if (document.getElementById('gtScript')) return;
+            var script = document.createElement('script');
+            script.id = 'gtScript';
+            script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            script.defer = true;
+            document.body.appendChild(script);
+        }
+
+        // Language Switcher Function
+        function switchLanguage(lang) {
+            var hostname = window.location.hostname;
+            var parts = hostname.split('.');
+            var domain = parts.length > 2 ? '.' + parts.slice(-2).join('.') : '.' + hostname;
+
+            if (lang === 'en') {
+                document.cookie = "googtrans=/id/en; path=/";
+                document.cookie = "googtrans=/id/en; domain=" + hostname + "; path=/";
+                document.cookie = "googtrans=/id/en; domain=" + domain + "; path=/";
+                localStorage.setItem('smartnews_lang', 'en');
+                loadGoogleTranslateScript();
+                updateLangButtons('en');
+                setTimeout(function() {
+                    location.reload();
+                }, 300);
+            } else {
+                document.cookie = "googtrans=/id/id; path=/";
+                document.cookie = "googtrans=/id/id; domain=" + hostname + "; path=/";
+                document.cookie = "googtrans=/id/id; domain=" + domain + "; path=/";
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + hostname + "; path=/;";
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + domain + "; path=/;";
+                localStorage.setItem('smartnews_lang', 'id');
+                updateLangButtons('id');
+                setTimeout(function() {
+                    location.reload();
+                }, 300);
+            }
+        }
+
+        function updateLangButtons(lang) {
+            var btnID = document.getElementById('langBtnID');
+            var btnEN = document.getElementById('langBtnEN');
+            var dBtnID = document.getElementById('drawerLangID');
+            var dBtnEN = document.getElementById('drawerLangEN');
+
+            if (lang === 'en') {
+                if (btnID) btnID.classList.remove('active');
+                if (btnEN) btnEN.classList.add('active');
+                if (dBtnID) dBtnID.classList.remove('active');
+                if (dBtnEN) dBtnEN.classList.add('active');
+            } else {
+                if (btnID) btnID.classList.add('active');
+                if (btnEN) btnEN.classList.remove('active');
+                if (dBtnID) dBtnID.classList.add('active');
+                if (dBtnEN) dBtnEN.classList.remove('active');
+            }
+        }
+
+        // Automatic DOM Text Cleaner for lingering \n, \r, \", and empty tags in articles
+        function cleanDomArticleContent() {
+            var targets = document.querySelectorAll('.article-body, .featured-article__excerpt, .feed-item__excerpt, .ai-summary-box__desc');
+            targets.forEach(function(el) {
+                var html = el.innerHTML;
+                if (html.indexOf('\\n') !== -1 || html.indexOf('\\"') !== -1 || html.indexOf('&#160;') !== -1) {
+                    html = html.replace(/\\r\\n|\\r|\\n/g, '<br/>');
+                    html = html.replace(/\\"/g, '"');
+                    html = html.replace(/\\'/g, "'");
+                    html = html.replace(/<p>\s*(&#160;|\s)*\s*<\/p>/gi, '');
+                    el.innerHTML = html;
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Clean article text in DOM
+            cleanDomArticleContent();
+
+            // Check current language cookie
+            if (document.cookie.indexOf('googtrans=/id/en') !== -1 || localStorage.getItem('smartnews_lang') === 'en') {
+                loadGoogleTranslateScript();
+                updateLangButtons('en');
+            } else {
+                updateLangButtons('id');
+            }
+
+            // 1. Dark Mode Toggle
+            var darkModeBtn = document.getElementById('darkModeBtn');
+            if (darkModeBtn) {
+                darkModeBtn.addEventListener('click', function() {
+                    var isDark = document.documentElement.classList.toggle('dark-mode');
+                    localStorage.setItem('smartnews_theme', isDark ? 'dark' : 'light');
+                    darkModeBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                });
+                if (document.documentElement.classList.contains('dark-mode')) {
+                    darkModeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                }
+            }
+
+            // 2. Offcanvas Mobile Drawer
+            var menuToggle = document.getElementById('menuToggle');
+            var mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            var allRubricsToggle = document.getElementById('allRubricsToggle');
+            var sidebarDrawer = document.getElementById('sidebarDrawer');
+            var sidebarOverlay = document.getElementById('sidebarOverlay');
+            var sidebarClose = document.getElementById('sidebarClose');
+
+            function openDrawer() {
+                if (sidebarDrawer && sidebarOverlay) {
+                    sidebarDrawer.classList.add('active');
+                    sidebarOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+            function closeDrawer() {
+                if (sidebarDrawer && sidebarOverlay) {
+                    sidebarDrawer.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            if (menuToggle) menuToggle.addEventListener('click', openDrawer);
+            if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', openDrawer);
+            if (allRubricsToggle) allRubricsToggle.addEventListener('click', openDrawer);
+            if (sidebarClose) sidebarClose.addEventListener('click', closeDrawer);
+            if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeDrawer);
+
+            // 3. Mobile Search Toggle
+            var mobileSearchToggle = document.getElementById('mobileSearchToggle');
+            var mobileSearchBar = document.getElementById('mobileSearchBar');
+            var mobileSearchClose = document.getElementById('mobileSearchClose');
+            var mobileSearchInput = document.getElementById('mobileSearchInput');
+
+            if (mobileSearchToggle && mobileSearchBar) {
+                mobileSearchToggle.addEventListener('click', function() {
+                    mobileSearchBar.classList.toggle('active');
+                    if (mobileSearchBar.classList.contains('active') && mobileSearchInput) {
+                        setTimeout(function() { mobileSearchInput.focus(); }, 150);
+                    }
+                });
+            }
+            if (mobileSearchClose && mobileSearchBar) {
+                mobileSearchClose.addEventListener('click', function() {
+                    mobileSearchBar.classList.remove('active');
+                });
+            }
+
+            // 4. Reading Progress Bar & Back to Top
+            var progressBar = document.getElementById('scrollProgressBar');
+            var backToTop = document.getElementById('backToTop');
+
+            window.addEventListener('scroll', function() {
+                var scrollTop = window.scrollY || document.documentElement.scrollTop;
+                var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                var progress = (scrollTop / (docHeight || 1)) * 100;
+                if (progressBar) progressBar.style.width = Math.min(progress, 100) + '%';
+
+                if (backToTop) {
+                    if (scrollTop > 350) {
+                        backToTop.classList.add('show');
+                    } else {
+                        backToTop.classList.remove('show');
+                    }
+                }
+            });
+
+            if (backToTop) {
+                backToTop.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // 5. Font Size Resizer (Single Post)
+            var articleBody = document.getElementById('articleBody');
+            var fontDec = document.getElementById('fontDecrease');
+            var fontRes = document.getElementById('fontReset');
+            var fontInc = document.getElementById('fontIncrease');
+
+            if (articleBody && fontDec && fontRes && fontInc) {
+                var fontSizes = ['15px', '17px', '20px'];
+                function setFontSize(idx) {
+                    articleBody.style.fontSize = fontSizes[idx];
+                    [fontDec, fontRes, fontInc].forEach(function(btn, i) {
+                        if (i === idx) btn.classList.add('font-resizer__btn--active');
+                        else btn.classList.remove('font-resizer__btn--active');
+                    });
+                }
+                fontDec.addEventListener('click', function() { setFontSize(0); });
+                fontRes.addEventListener('click', function() { setFontSize(1); });
+                fontInc.addEventListener('click', function() { setFontSize(2); });
+            }
+
+            // 6. Copy Link Button with Toast Modal
+            var btnCopyLink = document.getElementById('btnCopyLink');
+            var copyModal = document.getElementById('copyModal');
+
+            if (btnCopyLink && copyModal) {
+                btnCopyLink.addEventListener('click', function() {
+                    navigator.clipboard.writeText(window.location.href).then(function() {
+                        copyModal.classList.add('active');
+                        setTimeout(function() {
+                            copyModal.classList.remove('active');
+                        }, 2800);
+                    });
+                });
+            }
+
+            // 7. Calculate Reading Time
+            if (articleBody) {
+                var words = articleBody.innerText.trim().split(/\s+/).length;
+                var minutes = Math.ceil(words / 200);
+                var readingElem = document.getElementById('postReadingTime');
+                if (readingElem) {
+                    readingElem.innerText = minutes + ' menit membaca';
+                }
+            }
+
+            // 8. Swiper Hero Carousel Init (5 COLUMNS ON DESKTOP!)
+            if (typeof Swiper !== 'undefined' && document.getElementById('heroSwiper')) {
+                new Swiper('#heroSwiper', {
+                    slidesPerView: 1.15,
+                    spaceBetween: 12,
+                    loop: true,
+                    speed: 700,
+                    autoplay: {
+                        delay: 4500,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    breakpoints: {
+                        320: { slidesPerView: 1.15, spaceBetween: 10 },
+                        576: { slidesPerView: 2.2, spaceBetween: 12 },
+                        768: { slidesPerView: 3.2, spaceBetween: 14 },
+                        1024: { slidesPerView: 5, spaceBetween: 14 }
+                    }
+                });
+            }
+
+            // 9. Breaking News Live Feed Fetcher
+            fetch('/feeds/posts/default?alt=json&max-results=10')
+                .then(function(res) { return res.json(); })
+                .then(function(data) {
+                    if (data.feed && data.feed.entry && data.feed.entry.length > 0) {
+                        var track = document.getElementById('breakingTickerTrack');
+                        if (track) {
+                            var html = '';
+                            data.feed.entry.forEach(function(entry) {
+                                var title = entry.title.$t;
+                                var link = '';
+                                entry.link.forEach(function(l) {
+                                    if (l.rel === 'alternate') link = l.href;
+                                });
+                                var cat = (entry.category && entry.category.length > 0) ? entry.category[0].term : 'Berita';
+                                html += '<a href="' + link + '" class="breaking-news__item"><span class="breaking-news__category">' + cat + '</span> ' + title + ' <span class="breaking-news__divider">&#8226;</span></a>';
+                            });
+                            track.innerHTML = html + html;
+                        }
+                    }
+                })
+                .catch(function(err) {});
+
+            // 10. AJAX Load More for News Feed
+            var btnAjaxLoadMore = document.getElementById('btnAjaxLoadMore');
+            var articleFeedList = document.getElementById('articleFeedList');
+            var currentStartIndex = 8;
+            var maxBatch = 6;
+
+            if (btnAjaxLoadMore && articleFeedList) {
+                btnAjaxLoadMore.addEventListener('click', function() {
+                    btnAjaxLoadMore.disabled = true;
+                    btnAjaxLoadMore.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memuat berita...';
+
+                    fetch('/feeds/posts/default?alt=json&start-index=' + currentStartIndex + '&max-results=' + maxBatch)
+                        .then(function(res) { return res.json(); })
+                        .then(function(data) {
+                            if (data.feed && data.feed.entry && data.feed.entry.length > 0) {
+                                data.feed.entry.forEach(function(entry) {
+                                    var title = entry.title.$t;
+                                    var link = '';
+                                    entry.link.forEach(function(l) {
+                                        if (l.rel === 'alternate') link = l.href;
+                                    });
+                                    var cat = (entry.category && entry.category.length > 0) ? entry.category[0].term : 'Nasional';
+                                    var author = entry.author && entry.author[0] ? entry.author[0].name.$t : 'Redaksi';
+                                    var pubDate = entry.published ? new Date(entry.published.$t).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+                                    
+                                    // Extract image
+                                    var imgSrc = 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=400&q=80';
+                                    if (entry.media$thumbnail) {
+                                        imgSrc = entry.media$thumbnail.url.replace('/s72-c/', '/w400-h250-c/');
+                                    } else if (entry.content && entry.content.$t) {
+                                        var m = entry.content.$t.match(/<img[^>]+src=["']([^"']+)["']/i);
+                                        if (m) imgSrc = m[1];
+                                    }
+
+                                    var snippet = '';
+                                    if (entry.summary && entry.summary.$t) {
+                                        snippet = entry.summary.$t.substring(0, 140) + '...';
+                                    } else if (entry.content && entry.content.$t) {
+                                        var tmp = document.createElement('div');
+                                        tmp.innerHTML = entry.content.$t;
+                                        snippet = (tmp.textContent || tmp.innerText || '').substring(0, 140) + '...';
+                                    }
+
+                                    var item = document.createElement('article');
+                                    item.className = 'feed-item fade-up-in';
+                                    item.innerHTML = '<div class="feed-item__img-wrap">' +
+                                        '<a href="' + link + '"><img src="' + imgSrc + '" alt="' + title + '" class="feed-item__img" loading="lazy"/></a>' +
+                                        '</div>' +
+                                        '<div class="feed-item__body">' +
+                                        '<a href="/search/label/' + cat + '" class="feed-item__cat">' + cat + '</a>' +
+                                        '<h3 class="feed-item__title"><a href="' + link + '">' + title + '</a></h3>' +
+                                        '<p class="feed-item__excerpt">' + snippet + '</p>' +
+                                        '<div class="feed-item__meta">' +
+                                        '<span><i class="fas fa-user-circle"></i> ' + author + '</span>' +
+                                        '<span><i class="fas fa-clock"></i> ' + pubDate + '</span>' +
+                                        '</div></div>';
+                                    articleFeedList.appendChild(item);
+                                });
+
+                                currentStartIndex += maxBatch;
+                                btnAjaxLoadMore.disabled = false;
+                                btnAjaxLoadMore.innerHTML = '<i class="fas fa-sync-alt"></i> <span class="trans-load-more">Muat Berita Lainnya</span>';
+                            } else {
+                                var wrap = document.getElementById('loadMoreWrap');
+                                if (wrap) wrap.innerHTML = '<p style="color: var(--text-muted); font-size: 13.5px; font-weight: 600; text-align: center; margin: 16px 0;"><i class="fas fa-check-circle" style="color: #10b981;"></i> Seluruh berita terkini telah dimuat.</p>';
+                            }
+                        })
+                        .catch(function(err) {
+                            btnAjaxLoadMore.disabled = false;
+                            btnAjaxLoadMore.innerHTML = '<i class="fas fa-sync-alt"></i> Muat Berita Lainnya';
+                        });
+                });
+            }
+        });
+        //]]>
+    </script>
+</body>
+</html>
